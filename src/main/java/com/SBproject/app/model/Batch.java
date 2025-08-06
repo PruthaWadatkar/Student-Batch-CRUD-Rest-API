@@ -1,31 +1,25 @@
 package com.SBproject.app.model;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Batch {
 
+	@Id
 	private int bid;
 	private String bname;
 	private String baddress;
 	private double fees;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private Student stu;
-	
 	public Batch() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Batch(int bid, String bname, String baddress, double fees, Student stu) {
-		super();
-		this.bid = bid;
-		this.bname = bname;
-		this.baddress = baddress;
-		this.fees = fees;
-		this.stu = stu;
 	}
 
 	public int getBid() {
@@ -60,20 +54,19 @@ public class Batch {
 		this.fees = fees;
 	}
 
-	public Student getStu() {
-		return stu;
-	}
-
-	public void setStu(Student stu) {
-		this.stu = stu;
+	public Batch(int bid, String bname, String baddress, double fees) {
+		super();
+		this.bid = bid;
+		this.bname = bname;
+		this.baddress = baddress;
+		this.fees = fees;
 	}
 
 	@Override
 	public String toString() {
-		return "Batch [bid=" + bid + ", bname=" + bname + ", baddress=" + baddress + ", fees=" + fees + ", stu=" + stu
-				+ "]";
+		return "Batch [bid=" + bid + ", bname=" + bname + ", baddress=" + baddress + ", fees=" + fees + "]";
 	}
-	
+
 	
 	
 	
