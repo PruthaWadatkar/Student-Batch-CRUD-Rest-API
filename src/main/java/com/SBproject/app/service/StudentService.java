@@ -1,5 +1,5 @@
 package com.SBproject.app.service;
 
-public interface StudentService {
+public interface StudentService  {
 
 }

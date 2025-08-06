@@ -1,5 +1,8 @@
 package com.SBproject.app.service;
 
-public class BatchServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class BatchServiceImpl implements BatchService {
 
 }
