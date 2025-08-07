@@ -7,4 +7,8 @@ public interface StudentService  {
 	 Student saveStudent(Student student);
 	 String deleteStudent(int id);
 
+	Student getSingleStudent(Student st);
+
+	java.util.List<Student> getAllStudent();
+
 }

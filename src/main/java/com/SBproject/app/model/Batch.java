@@ -9,15 +9,36 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
+
 @Entity
 public class Batch {
 
 	@Id
 	private int bid;
+
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class Batch {
+	
+@Id
+	private Integer bid;
+
 	private String bname;
 	private String baddress;
 	private double fees;
 	
+
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Student stu;
+
 	public Batch() {
 		// TODO Auto-generated constructor stub
 	}
