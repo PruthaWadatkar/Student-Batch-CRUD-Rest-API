@@ -1,6 +1,7 @@
 package com.SBproject.app.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import com.SBproject.app.repository.BatchRepository;
 
 import com.SBproject.app.repository.StudentRepository;
 
+import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
+
 @Service
 public class StudentServiceImpl implements StudentService{
 	
@@ -23,21 +26,21 @@ public class StudentServiceImpl implements StudentService{
 	    @Autowired
 	    private BatchRepository batchRepository;
 
-	    @Override
-	    public Student saveStudent(Student student) {
-	        List<Batch> existingBatches = new ArrayList<>();
-
-	        if (student.getBatches() != null) {
-	            for (Batch b : student.getBatches()) {
-	                Batch batch = batchRepository.findById(b.getBid())
-	                        .orElseThrow(() -> new RuntimeException("Batch not found with ID: " + b.getBid()));
-	                existingBatches.add(batch);
-	            }
-	        }
-
-	        student.setBatches(existingBatches);
-	        return studentRepository.save(student);
-	    }
+//	    @Override
+//	    public Student saveStudent(Student student) {
+//	        List<Batch> existingBatches = new ArrayList<>();
+//
+//	        if (student.getBatches() != null) {
+//	            for (Batch b : student.getBatches()) {
+//	                Batch batch = batchRepository.findById(b.getBid())
+//	                        .orElseThrow(() -> new RuntimeException("Batch not found with ID: " + b.getBid()));
+//	                existingBatches.add(batch);
+//	            }
+//	        }
+//
+//	        student.setBatches(existingBatches);
+//	        return studentRepository.save(student);
+//	    }
 
 	    @Override
 	    public String deleteStudent(int id) {
@@ -50,24 +53,24 @@ public class StudentServiceImpl implements StudentService{
 	    }
 
 	    // Optional method
-	    public Student addStudentToExistingBatch(Student student, List<Integer> batchIds) {
-	        List<Batch> existingBatches = new ArrayList<>();
-	        for (Integer bid : batchIds) {
-	            Batch batch = batchRepository.findById(bid)
-	                    .orElseThrow(() -> new RuntimeException("Batch not found with id: " + bid));
-	            existingBatches.add(batch);
-	        }
-	        student.setBatches(existingBatches);
-	        return studentRepository.save(student);
-	    }
-	    
+//	    public Student addStudentToExistingBatch(Student student, List<Integer> batchIds) {
+//	        List<Batch> existingBatches = new ArrayList<>();
+//	        for (Integer bid : batchIds) {
+//	            Batch batch = batchRepository.findById(bid)
+//	                    .orElseThrow(() -> new RuntimeException("Batch not found with id: " + bid));
+//	            existingBatches.add(batch);
+//	        }
+//	        student.setBatches(existingBatches);
+//	        return studentRepository.save(student);
+//	    }
+//	    
 	    
 
 	
 	
 	@Override
-	public Student getSingleStudent(Student st) {
-		Optional<Student> optional = studentRepository.findById(st.getId());
+	public Student getSingleStudent(Integer id) {
+		java.util.Optional<Student> optional = studentRepository.findById(id);
 		if(optional.isPresent()) {
 			
 			Student student = optional.get();
@@ -100,7 +103,7 @@ public class StudentServiceImpl implements StudentService{
 		Student students=studentRepository.findById(bid).get();
 		//Assigning Batch to Student
 		
-		Batch batchs=repository2.findById(id).get();
+		Batch batchs=batchRepository.findById(id).get();
 		
 		List<Batch> batchlist=students.getBatch();
 		
@@ -134,4 +137,7 @@ public class StudentServiceImpl implements StudentService{
  		return list;
 	}
 
-}
+	
+	}
+
+

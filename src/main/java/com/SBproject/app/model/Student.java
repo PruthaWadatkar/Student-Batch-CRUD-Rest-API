@@ -1,6 +1,9 @@
 package com.SBproject.app.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +32,27 @@ public class Student {
 	@JsonIgnore
 	@ManyToMany
 	private List<Batch> batch=new ArrayList<>();
+	
+	
+	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public Student(Integer id, String sname, String course, String address, double marks, List<Batch> batch) {
+		super();
+		this.id = id;
+		this.sname = sname;
+		this.course = course;
+		this.address = address;
+		this.marks = marks;
+		this.batch = batch;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -66,23 +90,16 @@ public class Student {
 		this.batch = batch;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", sname=" + sname + ", course=" + course + ", address=" + address + ", marks="
-				+ marks + ", batches=" + batches + "]";
+				+ marks + ", batch=" + batch + "]";
 	}
-	public Student(Integer id, String sname, String course, String address, double marks, List<Batch> batch) {
-		super();
-		this.id = id;
-		this.sname = sname;
-		this.course = course;
-		this.address = address;
-		this.marks = marks;
-		this.batch = batch;
-	}
-	public Student() {
-		super();
-	}
+
+	
+}
 		
 	
 	

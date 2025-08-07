@@ -13,7 +13,7 @@ public interface BatchService {
 	    String deleteBatch(int id);
 	
 
-	Batch getbatchdetails(Batch batch);
+	Batch getbatchdetails(Integer bid);
 
 	List<Batch> getAllBatchDeatails();
 

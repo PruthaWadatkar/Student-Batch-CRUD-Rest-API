@@ -7,10 +7,10 @@ import com.SBproject.app.model.Student;
 
 public interface StudentService  {
 	
-	 Student saveStudent(Student student);
+//	 Student saveStudent(Student student);
 	 String deleteStudent(int id);
 
-	Student getSingleStudent(Student st);
+	Student getSingleStudent(Integer id);
 
 	java.util.List<Student> getAllStudent();
 

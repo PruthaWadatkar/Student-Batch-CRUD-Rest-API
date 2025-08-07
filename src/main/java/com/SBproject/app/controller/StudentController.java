@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -55,16 +56,10 @@ public class StudentController {
 		
 	}
 	
-
-}
-
-	
-
-
-	    @PostMapping
-	    public Student createStudent(@RequestBody Student student) {
-	        return studentservice.saveStudent(student);
-	    }
+//	    @PostMapping
+//	    public Student createStudent(@RequestBody Student student) {
+//	        return studentservice.saveStudent(student);
+//	    }
 
 	    @DeleteMapping("/{id}")
 	    public String deleteStudent(@PathVariable int id) {
