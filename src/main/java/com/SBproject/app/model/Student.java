@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -18,7 +19,7 @@ public class Student {
 	private String course;
 	private String address;
 	private double marks;
-	@ManyToOne
+	@ManyToMany
 	private Batch batch;
 	
 	

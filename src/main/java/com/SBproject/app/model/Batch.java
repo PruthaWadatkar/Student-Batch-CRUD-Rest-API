@@ -1,18 +1,23 @@
 package com.SBproject.app.model;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Batch {
-
-	private int bid;
+	
+@Id
+	private Integer bid;
 	private String bname;
 	private String baddress;
 	private double fees;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Student stu;
 	
 	public Batch() {
