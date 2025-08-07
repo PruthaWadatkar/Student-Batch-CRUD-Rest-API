@@ -1,5 +1,6 @@
 package com.SBproject.app.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,20 +13,22 @@ import com.SBproject.app.model.Student;
 import com.SBproject.app.repository.BatchRepository;
 import com.SBproject.app.repository.StudentRepository;
 
+
 @Service
 public class BatchServiceImpl implements BatchService {
 
+
 	
-	@Autowired
-	BatchRepository repository;
-	
-	@Autowired
-	StudentRepository repository1;
+
+		@Autowired
+	private BatchRepository batchrepo;
+  @Autowired
+  private StudentRepository studentrepo;
 	
 	@Override
 	public Batch post(Batch batch) {
 		// TODO Auto-generated method stub
-		return repository.save(batch);
+		return batchrepo.save(batch);
 	}
 
 	@Override
@@ -33,8 +36,8 @@ public class BatchServiceImpl implements BatchService {
 		// TODO Auto-generated method stub
 		
 		
-		Batch batchs=repository.findById(bid).get();
-		Student student=repository1.findById(id).get();
+		Batch batchs=batchrepo.findById(bid).get();
+		Student student=studentrepo.findById(id).get();
 		//Assigning Batch to student
 		
 		
@@ -54,7 +57,7 @@ public class BatchServiceImpl implements BatchService {
 	
 		batchs.setStu(studnetlist);
 		
-		return repository.save(batchs);
+		return batchrepo.save(batchs);
 		
 		
 		/*if(batchs.getBid()==bid) {
@@ -81,9 +84,49 @@ public class BatchServiceImpl implements BatchService {
 		// TODO Auto-generated method stub
 		
 		PageRequest request= PageRequest.of(page, size);
-		List<Batch> batch=repository.findAll(request).getContent();
+		List<Batch> batch=batchrepo.findAll(request).getContent();
 		return batch;
 		
 	}
+
+	    @Override
+	    public Batch saveBatch(Batch batch) {
+	        return batchrepo.save(batch);
+	    }
+
+	    @Override
+	    public String deleteBatch(int id) {
+	        if (batchrepo.existsById(id)) {
+	            batchrepo.deleteById(id);
+	            return "Batch deleted with ID: " + id;
+	        } else {
+	            return "Batch not found with ID: " + id;
+	        }
+	    }
+
+		
+
+
+
+	@Override
+	public Batch getbatchdetails(Batch batch) {
+		
+	Optional<Batch> getdetails=	batchrepo.findById(batch.getBid());
+		if(getdetails.isPresent()) {
+			
+			Batch bat = getdetails.get();
+			return batch;
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<Batch> getAllBatchDeatails() {
+		
+		List<Batch> getall = batchrepo.findAll();
+		return getall;
+	}
+
 
 }

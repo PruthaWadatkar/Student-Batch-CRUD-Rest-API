@@ -1,31 +1,35 @@
 package com.SBproject.app.model;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 public class Batch {
-	@Id
-	/*
-	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 */private Integer bid;
+	
+@Id
+	private Integer bid;
+
 	private String bname;
 	private String baddress;
 	private double fees;
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)	
-	private List<Student> stu=new ArrayList<>();
-	public Integer getBid() {
+	
+
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Student stu;
+
+	public Batch() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getBid() {
+
 		return bid;
 	}
 	public void setBid(Integer bid) {
@@ -49,6 +53,7 @@ public class Batch {
 	public void setFees(double fees) {
 		this.fees = fees;
 	}
+
 	public List<Student> getStu() {
 		return stu;
 	}
@@ -56,26 +61,26 @@ public class Batch {
 		this.stu = stu;
 	}
 	public Batch(Integer bid, String bname, String baddress, double fees, List<Student> stu) {
+
+
+	public Batch(int bid, String bname, String baddress, double fees) {
+
 		super();
 		this.bid = bid;
 		this.bname = bname;
 		this.baddress = baddress;
 		this.fees = fees;
+
 		this.stu = stu;
+
 	}
 	@Override
 	public String toString() {
-		return "Batch [bid=" + bid + ", bname=" + bname + ", baddress=" + baddress + ", fees=" + fees + ", stu=" + stu
-				+ "]";
+		return "Batch [bid=" + bid + ", bname=" + bname + ", baddress=" + baddress + ", fees=" + fees + "]";
 	}
+
 	public Batch() {
 		super();
 	}
-	
-	
-		
-	
-	
-	
-	
+
 }
