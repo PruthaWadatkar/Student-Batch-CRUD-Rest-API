@@ -1,25 +1,61 @@
 package com.SBproject.app.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Batch {
-
-	private int bid;
+	@Id
+	/*
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 */private Integer bid;
 	private String bname;
 	private String baddress;
 	private double fees;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private Student stu;
-	
-	public Batch() {
-		// TODO Auto-generated constructor stub
+	@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)	
+	private List<Student> stu=new ArrayList<>();
+	public Integer getBid() {
+		return bid;
 	}
-
-	public Batch(int bid, String bname, String baddress, double fees, Student stu) {
+	public void setBid(Integer bid) {
+		this.bid = bid;
+	}
+	public String getBname() {
+		return bname;
+	}
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
+	public String getBaddress() {
+		return baddress;
+	}
+	public void setBaddress(String baddress) {
+		this.baddress = baddress;
+	}
+	public double getFees() {
+		return fees;
+	}
+	public void setFees(double fees) {
+		this.fees = fees;
+	}
+	public List<Student> getStu() {
+		return stu;
+	}
+	public void setStu(List<Student> stu) {
+		this.stu = stu;
+	}
+	public Batch(Integer bid, String bname, String baddress, double fees, List<Student> stu) {
 		super();
 		this.bid = bid;
 		this.bname = bname;
@@ -27,53 +63,17 @@ public class Batch {
 		this.fees = fees;
 		this.stu = stu;
 	}
-
-	public int getBid() {
-		return bid;
-	}
-
-	public void setBid(int bid) {
-		this.bid = bid;
-	}
-
-	public String getBname() {
-		return bname;
-	}
-
-	public void setBname(String bname) {
-		this.bname = bname;
-	}
-
-	public String getBaddress() {
-		return baddress;
-	}
-
-	public void setBaddress(String baddress) {
-		this.baddress = baddress;
-	}
-
-	public double getFees() {
-		return fees;
-	}
-
-	public void setFees(double fees) {
-		this.fees = fees;
-	}
-
-	public Student getStu() {
-		return stu;
-	}
-
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
-
 	@Override
 	public String toString() {
 		return "Batch [bid=" + bid + ", bname=" + bname + ", baddress=" + baddress + ", fees=" + fees + ", stu=" + stu
 				+ "]";
 	}
+	public Batch() {
+		super();
+	}
 	
+	
+		
 	
 	
 	
